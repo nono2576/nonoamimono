@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>編み物日記 - やさしい毛糸の日々</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+      background-color: #FFFAF5;
+      color: #5D4037;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 40px 0;
+      background-color: #FFF;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      color: #BF7B54;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+      color: #9C9C9C;
+      margin-bottom: 20px;
+    }
+    
+    nav {
+      margin: 20px 0;
+    }
+    
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    
+    nav li {
+      margin: 0 15px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #BF7B54;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    
+    nav a:hover {
+      background-color: #F9EAE1;
+    }
+    
+    .main-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+    
+    .diary-entries {
+      background-color: #FFF;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .diary-header {
+      border-bottom: 2px solid #F1E5DC;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .diary-entry {
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px dashed #F1E5DC;
+    }
+    
+    .diary-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .entry-image {
+      width: 100%;
+      height: 200px;
+      background-color: #F1E5DC;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #BF7B54;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      color: #BF7B54;
+      margin-bottom: 15px;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+      color: #BF7B54;
+      margin-bottom: 12px;
+    }
+    
+    .entry-date {
+      font-size: 0.9rem;
+      color: #9C9C9C;
+      margin-bottom: 15px;
+    }
+    
+    .tag-list {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .tag {
+      background-color: #F9EAE1;
+      color: #BF7B54;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+    
+    .diary-pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    
+    .page-link {
+      padding: 8px 12px;
+      margin: 0 5px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #5D4037;
+      background-color: #F9EAE1;
+      transition: background-color 0.3s;
+    }
+    
+    .page-link:hover, .page-link.active {
+      background-color: #BF7B54;
+      color: white;
+    }
+    
+    .sidebar {
+      background-color: #FFF;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .profile {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #F1E5DC;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #BF7B54;
+    }
+    
+    .archive-list, .tag-cloud {
+      margin-bottom: 25px;
+    }
+    
+    .archive-list ul {
+      list-style: none;
+      padding-left: 5px;
+    }
+    
+    .archive-list li {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #F1E5DC;
+    }
+    
+    .archive-list a {
+      text-decoration: none;
+      color: #5D4037;
+      transition: color 0.3s;
+    }
+    
+    .archive-list a:hover {
+      color: #BF7B54;
+    }
+    
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #9C9C9C;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 768px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav li {
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>やさしい毛糸の日々</h1>
+      <p class="subtitle">〜 手編みで紡ぐ、あたたかな暮らし 〜</p>
+      <nav>
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="diary.html">編み物日記</a></li>
+          <li><a href="#">作品集</a></li>
+          <li><a href="#">編み図</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <div class="main-content">
+      <main class="diary-entries">
+        <div class="diary-header">
+          <h2>編み物日記</h2>
+          <p>日々の編み物の記録や気づき、制作の様子をつづっています。</p>
+        </div>
+        
+        <article class="diary-entry">
+          <div class="entry-image">
+            【編み物写真】
+          </div>
+          <h3>春の日差しを浴びながら</h3>
+          <p class="entry-date">2025年4月5日 土曜日</p>
+          <div class="entry-content">
+            <p>今日は久しぶりにベランダで編み物をしました。陽だまりの中で編むと、毛糸の色がより鮮やかに見えますね。現在進行中のショールは、すでに半分ほど編み終わりました。</p>
+            <p>淡いピンクとアイボリーのグラデーションが、思っていた以上に春らしい雰囲気になっています。このショールは友人への誕生日プレゼント。喜んでもらえるといいなと思いながら、一目一目丁寧に編んでいます。</p>
+            <p>途中で鳥のさえずりに気を取られて、ちょっぴり編み間違えてしまったのはここだけの秘密…。でもそれも含めて、この作品の思い出になりそうです。</p>
+          </div>
+          <div class="tag-list">
+            <a href="#" class="tag">#ショール</a>
+            <a href="#" class="tag">#春色</a>
+            <a href="#" class="tag">#プレゼント</a>
+            <a href="#" class="tag">#棒針編み</a>
+          </div>
+        </article>
+        
+        <article class="diary-entry">
+          <div class="entry-image">
+            【毛糸の写真】
+          </div>
+          <h3>新しい毛糸との出会い</h3>
+          <p class="entry-date">2025年4月2日 水曜日</p>
+          <div class="entry-content">
+            <p>今日は毛糸屋さんで素敵な出会いがありました。春夏向けの新作毛糸がずらりと並ぶ中、リネンとコットンの混紡糸に一目惚れ。ナチュラルな風合いなのに、程よい艶があって、とても上品な印象です。</p>
+            <p>悩んだ末に、ペールブルーとナチュラルベージュの2色を購入。これから暖かくなる季節に向けて、軽やかなストールを編もうと思います。いくつかのレース編みのパターンを試してみて、一番しっくりくるものを選びたいな。</p>
+            <p>帰りにカフェに寄って、早速編み図を描きました。こうやって新しい作品のイメージが膨らんでいくのが、編み物の楽しさの一つですね。</p>
+          </div>
+          <div class="tag-list">
+            <a href="#" class="tag">#毛糸</a>
+            <a href="#" class="tag">#ストール</a>
+            <a href="#" class="tag">#リネン</a>
+            <a href="#" class="tag">#編み図</a>
+          </div>
+        </article>
+        
+        <article class="diary-entry">
+          <div class="entry-image">
+            【編みかけの作品写真】
+          </div>
+          <h3>編み物時間の作り方</h3>
+          <p class="entry-date">2025年3月30日 日曜日</p>
+          <div class="entry-content">
+            <p>忙しい毎日の中で、どうやって編み物の時間を確保しているのか、よく質問をいただきます。私の場合は、朝の時間を活用することが多いです。家族が起きる前の静かな30分間、窓際の椅子に座って編み物をするのが日課になっています。</p>
+            <p>また、電車での移動時間や、子どもの習い事の待ち時間なども貴重な編み物タイムです。小さめのプロジェクトならバッグに入れて持ち運びやすいので、隙間時間を有効活用できます。</p>
+            <p>思えば、こうして少しずつ時間を見つけて編んでいるからこそ、一つ一つの作品に愛着が湧くのかもしれません。今日は日曜日なので、午後のんびりとして編み物に集中できることに感謝です。</p>
+          </div>
+          <div class="tag-list">
+            <a href="#" class="tag">#日常</a>
+            <a href="#" class="tag">#編み物のある暮らし</a>
+            <a href="#" class="tag">#時間管理</a>
+          </div>
+        </article>
+        
+        <div class="diary-pagination">
+          <a href="#" class="page-link">1</a>
+          <a href="#" class="page-link active">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link">4</a>
+          <a href="#" class="page-link">></a>
+        </div>
+      </main>
+      
+      <aside class="sidebar">
+        <div class="profile">
+          <div class="profile-image">
+            【プロフィール写真】
+          </div>
+          <h3>さくら</h3>
+          <p>編み物歴10年。大好きな毛糸と針を手に、日々の暮らしを彩る小物や衣類を制作しています。このブログでは、作品づくりの過程や編み物の楽しさをお届けします。</p>
+        </div>
+        
+        <div class="archive-list">
+          <h3>アーカイブ</h3>
+          <ul>
+            <li><a href="#">2025年4月 (2)</a></li>
+            <li><a href="#">2025年3月 (8)</a></li>
+            <li><a href="#">2025年2月 (6)</a></li>
+            <li><a href="#">2025年1月 (5)</a></li>
+            <li><a href="#">2024年12月 (7)</a></li>
+            <li><a href="#">2024年11月 (4)</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3>タグクラウド</h3>
+          <div class="tag-cloud">
+            <a href="#" class="tag">#かぎ針編み</a>
+            <a href="#" class="tag">#棒針編み</a>
+            <a href="#" class="tag">#ショール</a>
+            <a href="#" class="tag">#春色</a>
+            <a href="#" class="tag">#毛糸</a>
+            <a href="#" class="tag">#編み図</a>
+            <a href="#" class="tag">#日常</a>
+            <a href="#" class="tag">#セーター</a>
+            <a href="#" class="tag">#小物</a>
+            <a href="#" class="tag">#初心者</a>
+            <a href="#" class="tag">#編み物のある暮らし</a>
+            <a href="#" class="tag">#リネン</a>
+            <a href="#" class="tag">#コットン</a>
+            <a href="#" class="tag">#ウール</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+    
+    <footer>
+      <p>&copy; 2025 やさしい毛糸の日々 All Rights Reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

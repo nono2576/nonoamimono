@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>やさしい毛糸の日々 - 編み物ブログ</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+      background-color: #FFFAF5;
+      color: #5D4037;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 40px 0;
+      background-color: #FFF;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      color: #BF7B54;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+      color: #9C9C9C;
+      margin-bottom: 20px;
+    }
+    
+    nav {
+      margin: 20px 0;
+    }
+    
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    
+    nav li {
+      margin: 0 15px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #BF7B54;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    
+    nav a:hover {
+      background-color: #F9EAE1;
+    }
+    
+    .main-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+    
+    .featured {
+      background-color: #FFF;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .featured-image {
+      width: 100%;
+      height: 250px;
+      background-color: #F1E5DC;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #BF7B54;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      color: #BF7B54;
+      margin-bottom: 15px;
+    }
+    
+    .post-meta {
+      font-size: 0.9rem;
+      color: #9C9C9C;
+      margin-bottom: 15px;
+    }
+    
+    .post-excerpt {
+      margin-bottom: 20px;
+    }
+    
+    .read-more {
+      display: inline-block;
+      background-color: #BF7B54;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    
+    .read-more:hover {
+      background-color: #A66A48;
+    }
+    
+    .sidebar {
+      background-color: #FFF;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .profile {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #F1E5DC;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #BF7B54;
+    }
+    
+    .category-list, .recent-posts {
+      margin-bottom: 25px;
+    }
+    
+    .category-list ul, .recent-posts ul {
+      list-style: none;
+      padding-left: 5px;
+    }
+    
+    .category-list li, .recent-posts li {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #F1E5DC;
+    }
+    
+    .category-list a, .recent-posts a {
+      text-decoration: none;
+      color: #5D4037;
+      transition: color 0.3s;
+    }
+    
+    .category-list a:hover, .recent-posts a:hover {
+      color: #BF7B54;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #9C9C9C;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 768px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav li {
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>やさしい毛糸の日々</h1>
+      <p class="subtitle">〜 手編みで紡ぐ、あたたかな暮らし 〜</p>
+      <nav>
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="diary.html">編み物日記</a></li>
+          <li><a href="#">作品集</a></li>
+          <li><a href="#">編み図</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <div class="main-content">
+      <main class="featured">
+        <article>
+          <div class="featured-image">
+            【編み物の写真】
+          </div>
+          <h2>春色のかぎ針編みクッションカバー</h2>
+          <p class="post-meta">2025年4月3日 | カテゴリ: かぎ針編み, インテリア</p>
+          <div class="post-excerpt">
+            <p>春の訪れと共に、お部屋の雰囲気も新しくしてみませんか？今回は柔らかな色合いの毛糸を使って、春らしいクッションカバーを編みました。花モチーフを散りばめたデザインで、リビングに置くだけで明るい印象になります。</p>
+            <p>使用した毛糸は、オーガニックコットン100%の「やわらか」シリーズ。肌触りが良く、サステナブルな素材なので、環境にも配慮した作品になっています...</p>
+          </div>
+          <a href="#" class="read-more">続きを読む</a>
+        </article>
+        
+        <article style="margin-top: 40px;">
+          <div class="featured-image">
+            【編み物の写真】
+          </div>
+          <h2>初心者さんでも簡単！棒針編みの基本ステッチ</h2>
+          <p class="post-meta">2025年3月28日 | カテゴリ: 棒針編み, 初心者向け</p>
+          <div class="post-excerpt">
+            <p>編み物を始めたいけれど、どこから手をつければいいのか分からない…そんな方のために、今回は棒針編みの基本をご紹介します。表編み、裏編み、メリヤス編みなど、覚えておきたい基本のステッチを写真付きで解説しています。</p>
+            <p>道具の選び方や毛糸の扱い方など、初めての方でも安心して始められるコツもお伝えします...</p>
+          </div>
+          <a href="#" class="read-more">続きを読む</a>
+        </article>
+      </main>
+      
+      <aside class="sidebar">
+        <div class="profile">
+          <div class="profile-image">
+            【プロフィール写真】
+          </div>
+          <h3>さくら</h3>
+          <p>編み物歴10年。大好きな毛糸と針を手に、日々の暮らしを彩る小物や衣類を制作しています。このブログでは、作品づくりの過程や編み物の楽しさをお届けします。</p>
+        </div>
+        
+        <div class="category-list">
+          <h3>カテゴリー</h3>
+          <ul>
+            <li><a href="#">かぎ針編み (15)</a></li>
+            <li><a href="#">棒針編み (12)</a></li>
+            <li><a href="#">初心者向け (8)</a></li>
+            <li><a href="#">小物 (20)</a></li>
+            <li><a href="#">衣類 (7)</a></li>
+            <li><a href="#">インテリア (5)</a></li>
+          </ul>
+        </div>
+        
+        <div class="recent-posts">
+          <h3>最近の投稿</h3>
+          <ul>
+            <li><a href="#">春色のかぎ針編みクッションカバー</a></li>
+            <li><a href="#">初心者さんでも簡単！棒針編みの基本ステッチ</a></li>
+            <li><a href="#">穏やかな午後の手編みソックス</a></li>
+            <li><a href="#">毛糸の選び方 - 素材別の特徴と用途</a></li>
+            <li><a href="#">かぎ針で編む、春のフラワーモチーフ</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+    
+    <footer>
+      <p>&copy; 2025 やさしい毛糸の日々 All Rights Reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
