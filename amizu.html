@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>編み図 - やさしい毛糸の日々</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+      background-color: #FFFAF5;
+      color: #5D4037;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 40px 0;
+      background-color: #FFF;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      color: #BF7B54;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+      color: #9C9C9C;
+      margin-bottom: 20px;
+    }
+    
+    nav {
+      margin: 20px 0;
+    }
+    
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    
+    nav li {
+      margin: 0 15px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #BF7B54;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    
+    nav a:hover {
+      background-color: #F9EAE1;
+    }
+    
+    .main-content {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 30px;
+    }
+    
+    .patterns-content {
+      background-color: #FFF;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .patterns-header {
+      border-bottom: 2px solid #F1E5DC;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      color: #BF7B54;
+      margin-bottom: 15px;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+      color: #BF7B54;
+      margin-bottom: 12px;
+    }
+    
+    .filter-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .filter-button {
+      background-color: #F9EAE1;
+      color: #BF7B54;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    
+    .filter-button:hover, .filter-button.active {
+      background-color: #BF7B54;
+      color: white;
+    }
+    
+    .patterns-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 25px;
+    }
+    
+    .pattern-item {
+      background-color: #FFF;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    
+    .pattern-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .pattern-image {
+      width: 100%;
+      height: 180px;
+      background-color: #F1E5DC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #BF7B54;
+    }
+    
+    .pattern-info {
+      padding: 15px;
+    }
+    
+    .pattern-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .pattern-desc {
+      font-size: 0.85rem;
+      color: #5D4037;
+      margin-bottom: 10px;
+    }
+    
+    .pattern-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    
+    .pattern-tag {
+      background-color: #F9EAE1;
+      color: #BF7B54;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+    
+    .pattern-difficulty {
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+    }
+    
+    .difficulty-text {
+      font-size: 0.8rem;
+      color: #9C9C9C;
+      margin-right: 5px;
+    }
+    
+    .difficulty-level {
+      display: flex;
+    }
+    
+    .difficulty-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 3px;
+      background-color: #F1E5DC;
+    }
+    
+    .difficulty-dot.active {
+      background-color: #BF7B54;
+    }
+    
+    .patterns-pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    
+    .page-link {
+      padding: 8px 12px;
+      margin: 0 5px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #5D4037;
+      background-color: #F9EAE1;
+      transition: background-color 0.3s;
+    }
+    
+    .page-link:hover, .page-link.active {
+      background-color: #BF7B54;
+      color: white;
+    }
+    
+    .pattern-download {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #BF7B54;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .pattern-download:hover {
+      background-color: #A66A48;
+    }
+    
+    .sidebar {
+      background-color: #FFF;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .profile {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #F1E5DC;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #BF7B54;
+    }
+    
+    .difficulty-list, .popular-patterns {
+      margin-bottom: 25px;
+    }
+    
+    .difficulty-list ul, .popular-patterns ul {
+      list-style: none;
+      padding-left: 5px;
+    }
+    
+    .difficulty-list li, .popular-patterns li {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #F1E5DC;
+    }
+    
+    .difficulty-list a, .popular-patterns a {
+      text-decoration: none;
+      color: #5D4037;
+      transition: color 0.3s;
+    }
+    
+    .difficulty-list a:hover, .popular-patterns a:hover {
+      color: #BF7B54;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #9C9C9C;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 768px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav li {
+        margin: 5px 0;
+      }
+      
+      .patterns-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>やさしい毛糸の日々</h1>
+      <p class="subtitle">〜 手編みで紡ぐ、あたたかな暮らし 〜</p>
+      <nav>
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="diary.html">編み物日記</a></li>
+          <li><a href="gallery.html">作品集</a></li>
+          <li><a href="#">編み図</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <div class="main-content">
+      <main class="patterns-content">
+        <div class="patterns-header">
+          <h2>編み図コレクション</h2>
+          <p>オリジナルの編み図を無料でダウンロードいただけます。気になる作品を見つけたら、ぜひチャレンジしてみてください。</p>
+        </div>
+        
+        <div class="filter-menu">
+          <button class="filter-button active">すべて</button>
+          <button class="filter-button">かぎ針編み</button>
+          <button class="filter-button">棒針編み</button>
+          <button class="filter-button">初心者向け</button>
+          <button class="filter-button">中級者向け</button>
+          <button class="filter-button">上級者向け</button>
+        </div>
+        
+        <div class="patterns-grid">
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【春色ショール写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">春色グラデーションショール</p>
+              <p class="pattern-desc">淡いピンクとアイボリーのグラデーションが美しいショール。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">ショール</a>
+                <a href="#" class="pattern-tag">棒針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+          
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【クッションカバー写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">花モチーフのクッションカバー</p>
+              <p class="pattern-desc">立体的な花モチーフが美しいインテリア小物。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">インテリア</a>
+                <a href="#" class="pattern-tag">かぎ針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+          
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【ベレー帽写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">かぎ針のベレー帽</p>
+              <p class="pattern-desc">シンプルで合わせやすいベレー帽。初心者向け。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">帽子</a>
+                <a href="#" class="pattern-tag">かぎ針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot"></span>
+                  <span class="difficulty-dot"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+          
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【ソックス写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">手編みソックス</p>
+              <p class="pattern-desc">あたたかな履き心地のウールソックス。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">靴下</a>
+                <a href="#" class="pattern-tag">棒針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+          
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【カーディガン写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">メリノウールのカーディガン</p>
+              <p class="pattern-desc">シンプルだけど飽きのこないデザイン。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">衣類</a>
+                <a href="#" class="pattern-tag">棒針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+          
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【マフラー写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">カラフルストライプのマフラー</p>
+              <p class="pattern-desc">初心者にもおすすめの簡単マフラー。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">小物</a>
+                <a href="#" class="pattern-tag">棒針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot"></span>
+                  <span class="difficulty-dot"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+          
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【ブランケット写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">ベビーブランケット</p>
+              <p class="pattern-desc">贈り物にぴったりの優しい色合いのブランケット。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">インテリア</a>
+                <a href="#" class="pattern-tag">かぎ針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+          
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【ポーチ写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">北欧風ポーチ</p>
+              <p class="pattern-desc">シンプルで使いやすいポーチ。プレゼントにも。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">小物</a>
+                <a href="#" class="pattern-tag">かぎ針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot"></span>
+                  <span class="difficulty-dot"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+          
+          <div class="pattern-item">
+            <div class="pattern-image">
+              【アームウォーマー写真】
+            </div>
+            <div class="pattern-info">
+              <p class="pattern-title">リネン混の指なし手袋</p>
+              <p class="pattern-desc">春先にぴったりの軽やかなアームウォーマー。</p>
+              <div class="pattern-tags">
+                <a href="#" class="pattern-tag">小物</a>
+                <a href="#" class="pattern-tag">棒針編み</a>
+              </div>
+              <div class="pattern-difficulty">
+                <span class="difficulty-text">難易度：</span>
+                <div class="difficulty-level">
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot active"></span>
+                  <span class="difficulty-dot"></span>
+                </div>
+              </div>
+              <a href="#" class="pattern-download">編み図をダウンロード</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="patterns-pagination">
+          <a href="#" class="page-link active">1</a>
+          <a href="#" class="page-link">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link">></a>
+        </div>
+      </main>
+      
+      <aside class="sidebar">
+        <div class="profile">
+          <div class="profile-image">
+            【プロフィール写真】
+          </div>
+          <h3>さくら</h3>
+          <p>編み物歴10年。大好きな毛糸と針を手に、日々の暮らしを彩る小物や衣類を制作しています。このブログでは、作品づくりの過程や編み物の楽しさをお届けします。</p>
+        </div>
+        
+        <div class="difficulty-list">
+          <h3>難易度別</h3>
+          <ul>
+            <li><a href="#">初心者向け (12)</a></li>
+            <li><a href="#">中級者向け (18)</a></li>
+            <li><a href="#">上級者向け (5)</a></li>
+          </ul>
+        </div>
+        
+        <div class="popular-patterns">
+          <h3>人気の編み図</h3>
+          <ul>
+            <li><a href="#">春色グラデーションショール</a></li>
+            <li><a href="#">かぎ針のベレー帽</a></li>
+            <li><a href="#">手編みソックス</a></li>
+            <li><a href="#">カラフルストライプのマフラー</a></li>
+            <li><a href="#">ベビーブランケット</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+    
+    <footer>
+      <p>&copy; 2025 やさしい毛糸の日々 All Rights Reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
