@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品集 - やさしい毛糸の日々</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+      background-color: #FFFAF5;
+      color: #5D4037;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 40px 0;
+      background-color: #FFF;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      color: #BF7B54;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+      color: #9C9C9C;
+      margin-bottom: 20px;
+    }
+    
+    nav {
+      margin: 20px 0;
+    }
+    
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    
+    nav li {
+      margin: 0 15px;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #BF7B54;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    
+    nav a:hover {
+      background-color: #F9EAE1;
+    }
+    
+    .main-content {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 30px;
+    }
+    
+    .works-gallery {
+      background-color: #FFF;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .works-header {
+      border-bottom: 2px solid #F1E5DC;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      color: #BF7B54;
+      margin-bottom: 15px;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+      color: #BF7B54;
+      margin-bottom: 12px;
+    }
+    
+    .filter-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .filter-button {
+      background-color: #F9EAE1;
+      color: #BF7B54;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    
+    .filter-button:hover, .filter-button.active {
+      background-color: #BF7B54;
+      color: white;
+    }
+    
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    
+    .work-item {
+      margin-bottom: 25px;
+    }
+    
+    .work-image {
+      width: 100%;
+      height: 200px;
+      background-color: #F1E5DC;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #BF7B54;
+    }
+    
+    .work-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .work-date {
+      font-size: 0.85rem;
+      color: #9C9C9C;
+      margin-bottom: 8px;
+    }
+    
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    
+    .work-tag {
+      background-color: #F9EAE1;
+      color: #BF7B54;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+    
+    .works-pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    
+    .page-link {
+      padding: 8px 12px;
+      margin: 0 5px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #5D4037;
+      background-color: #F9EAE1;
+      transition: background-color 0.3s;
+    }
+    
+    .page-link:hover, .page-link.active {
+      background-color: #BF7B54;
+      color: white;
+    }
+    
+    .sidebar {
+      background-color: #FFF;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .profile {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #F1E5DC;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #BF7B54;
+    }
+    
+    .category-list, .popular-works {
+      margin-bottom: 25px;
+    }
+    
+    .category-list ul, .popular-works ul {
+      list-style: none;
+      padding-left: 5px;
+    }
+    
+    .category-list li, .popular-works li {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #F1E5DC;
+    }
+    
+    .category-list a, .popular-works a {
+      text-decoration: none;
+      color: #5D4037;
+      transition: color 0.3s;
+    }
+    
+    .category-list a:hover, .popular-works a:hover {
+      color: #BF7B54;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #9C9C9C;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 768px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav li {
+        margin: 5px 0;
+      }
+      
+      .works-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>やさしい毛糸の日々</h1>
+      <p class="subtitle">〜 手編みで紡ぐ、あたたかな暮らし 〜</p>
+      <nav>
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="diary.html">編み物日記</a></li>
+          <li><a href="#">作品集</a></li>
+          <li><a href="#">編み図</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <div class="main-content">
+      <main class="works-gallery">
+        <div class="works-header">
+          <h2>作品集</h2>
+          <p>これまでに制作した編み物作品をご紹介します。クリックすると詳細ページへ移動します。</p>
+        </div>
+        
+        <div class="filter-menu">
+          <button class="filter-button active">すべて</button>
+          <button class="filter-button">かぎ針編み</button>
+          <button class="filter-button">棒針編み</button>
+          <button class="filter-button">衣類</button>
+          <button class="filter-button">小物</button>
+          <button class="filter-button">インテリア</button>
+        </div>
+        
+        <div class="works-grid">
+          <div class="work-item">
+            <div class="work-image">
+              【ショール写真】
+            </div>
+            <p class="work-title">春色グラデーションショール</p>
+            <p class="work-date">2025年4月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">ショール</a>
+              <a href="#" class="work-tag">棒針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【クッションカバー写真】
+            </div>
+            <p class="work-title">花モチーフのクッションカバー</p>
+            <p class="work-date">2025年4月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">インテリア</a>
+              <a href="#" class="work-tag">かぎ針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【手袋写真】
+            </div>
+            <p class="work-title">リネン混の指なし手袋</p>
+            <p class="work-date">2025年3月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">小物</a>
+              <a href="#" class="work-tag">棒針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【帽子写真】
+            </div>
+            <p class="work-title">かぎ針のベレー帽</p>
+            <p class="work-date">2025年3月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">帽子</a>
+              <a href="#" class="work-tag">かぎ針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【ソックス写真】
+            </div>
+            <p class="work-title">手編みソックス</p>
+            <p class="work-date">2025年2月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">靴下</a>
+              <a href="#" class="work-tag">棒針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【カーディガン写真】
+            </div>
+            <p class="work-title">メリノウールのカーディガン</p>
+            <p class="work-date">2025年2月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">衣類</a>
+              <a href="#" class="work-tag">棒針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【マフラー写真】
+            </div>
+            <p class="work-title">カラフルストライプのマフラー</p>
+            <p class="work-date">2025年1月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">小物</a>
+              <a href="#" class="work-tag">棒針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【ブランケット写真】
+            </div>
+            <p class="work-title">ベビーブランケット</p>
+            <p class="work-date">2025年1月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">インテリア</a>
+              <a href="#" class="work-tag">かぎ針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【ポーチ写真】
+            </div>
+            <p class="work-title">北欧風ポーチ</p>
+            <p class="work-date">2024年12月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">小物</a>
+              <a href="#" class="work-tag">かぎ針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【セーター写真】
+            </div>
+            <p class="work-title">冬のケーブルニットセーター</p>
+            <p class="work-date">2024年12月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">衣類</a>
+              <a href="#" class="work-tag">棒針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【小物入れ写真】
+            </div>
+            <p class="work-title">コットンの小物入れ</p>
+            <p class="work-date">2024年11月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">インテリア</a>
+              <a href="#" class="work-tag">かぎ針編み</a>
+            </div>
+          </div>
+          
+          <div class="work-item">
+            <div class="work-image">
+              【アクセサリー写真】
+            </div>
+            <p class="work-title">レース編みのブレスレット</p>
+            <p class="work-date">2024年11月</p>
+            <div class="work-tags">
+              <a href="#" class="work-tag">アクセサリー</a>
+              <a href="#" class="work-tag">かぎ針編み</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="works-pagination">
+          <a href="#" class="page-link active">1</a>
+          <a href="#" class="page-link">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link">></a>
+        </div>
+      </main>
+      
+      <aside class="sidebar">
+        <div class="profile">
+          <div class="profile-image">
+            【プロフィール写真】
+          </div>
+          <h3>さくら</h3>
+          <p>編み物歴10年。大好きな毛糸と針を手に、日々の暮らしを彩る小物や衣類を制作しています。このブログでは、作品づくりの過程や編み物の楽しさをお届けします。</p>
+        </div>
+        
+        <div class="category-list">
+          <h3>カテゴリー</h3>
+          <ul>
+            <li><a href="#">かぎ針編み (15)</a></li>
+            <li><a href="#">棒針編み (12)</a></li>
+            <li><a href="#">小物 (20)</a></li>
+            <li><a href="#">衣類 (7)</a></li>
+            <li><a href="#">インテリア (5)</a></li>
+            <li><a href="#">アクセサリー (3)</a></li>
+          </ul>
+        </div>
+        
+        <div class="popular-works">
+          <h3>人気の作品</h3>
+          <ul>
+            <li><a href="#">春色グラデーションショール</a></li>
+            <li><a href="#">花モチーフのクッションカバー</a></li>
+            <li><a href="#">手編みソックス</a></li>
+            <li><a href="#">メリノウールのカーディガン</a></li>
+            <li><a href="#">ベビーブランケット</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+    
+    <footer>
+      <p>&copy; 2025 やさしい毛糸の日々 All Rights Reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
