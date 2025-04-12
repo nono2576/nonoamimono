@@ -1,0 +1,188 @@
+/* 共通スタイル - やさしい毛糸の日々 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+    background-color: #FFFAF5;
+    color: #5D4037;
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* ヘッダー */
+  header {
+    text-align: center;
+    padding: 40px 0;
+    background-color: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+    color: #BF7B54;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: #9C9C9C;
+    margin-bottom: 20px;
+  }
+  
+  /* ナビゲーション */
+  nav {
+    margin: 20px 0;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+  
+  nav li {
+    margin: 0 15px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #BF7B54;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  nav a:hover {
+    background-color: #F9EAE1;
+  }
+  
+  /* メインコンテンツ */
+  .main-content {
+    display: grid;
+    gap: 30px;
+  }
+  
+  /* サイドバー */
+  .sidebar {
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  
+  /* 見出し */
+  h2 {
+    font-size: 1.5rem;
+    color: #BF7B54;
+    margin-bottom: 15px;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    color: #BF7B54;
+    margin-bottom: 12px;
+  }
+  
+  /* プロフィール */
+  .profile {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #F1E5DC;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #BF7B54;
+  }
+  
+  /* サイドバーリスト */
+  .sidebar ul {
+    list-style: none;
+    padding-left: 5px;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #F1E5DC;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: #5D4037;
+    transition: color 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: #BF7B54;
+  }
+  
+  /* タグ */
+  .tag, .pattern-tag {
+    background-color: #F9EAE1;
+    color: #BF7B54;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+  
+  /* ページネーション */
+  .page-link {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #5D4037;
+    background-color: #F9EAE1;
+    transition: background-color 0.3s;
+  }
+  
+  .page-link:hover, .page-link.active {
+    background-color: #BF7B54;
+    color: white;
+  }
+  
+  /* フッター */
+  footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #9C9C9C;
+    font-size: 0.9rem;
+    margin-top: 40px;
+  }
+  
+  /* レスポンシブ */
+  @media (max-width: 768px) {
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    nav li {
+      margin: 5px 0;
+    }
+  }
